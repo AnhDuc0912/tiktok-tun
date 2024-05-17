@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
     res.cookie('csrfState', csrfState, {
         maxAge: 60000
     });
-    console.log(process.env.SERVER_ENDPOINT_REDIRECT);
+    console.log(process.env.CLIENT_KEY);
 
     let url = 'https://www.tiktok.com/v2/auth/authorize/';
     url += `?client_key=${process.env.CLIENT_KEY}`;
@@ -20,6 +20,8 @@ router.get('/', function (req, res, next) {
     res.redirect(url);
 });
 
+
+// /oauth//tiktok/callback
 router.get('/tiktok/callback', async (req, res) => {
     const {
         code,
